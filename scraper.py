@@ -1,5 +1,6 @@
 __author__ = 'Hernan Y.Ke'
 import urllib.request
+import os
 from urllib.parse import urljoin
 from bs4 import BeautifulSoup
 
@@ -16,4 +17,5 @@ for link in BeautifulSoup(content,"lxml").findAll("a"):
         img_href = urljoin(href,img["src"])
         print("Downloading",img_href)
         img_name = img_href.split("/")[-1]
-        urllib.request.urlretrieve(img_href,dic+"/"+img_name)
+        #urllib.request.urlretrieve(img_href,dic+"/"+img_name)
+        urllib.request.urlretrieve(img_href,os.path.join(os.path.abspath(dic),img_name))
